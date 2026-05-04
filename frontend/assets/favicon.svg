@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CineMatch favicon">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb567" />
+      <stop offset="100%" stop-color="#ffd8aa" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)" />
+  <path
+    d="M18 18h9c7.5 0 12 4.2 12 10.8S34.5 39.5 27 39.5h-4.5V46H18V18zm8.3 17.7c4.6 0 7.4-2.3 7.4-6.7s-2.8-6.5-7.4-6.5h-3.8v13.2h3.8z"
+    fill="#1f1409"
+  />
+  <path
+    d="M39.5 18H46l-7.2 12.6L46.5 46H40l-4.8-9-4.9 9h-6.5l7.8-14.7L24.3 18h6.6l4.4 8.3 4.2-8.3z"
+    fill="#1f1409"
+  />
+</svg>

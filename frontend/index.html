@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineMatch</title>
+  <meta
+    name="description"
+    content="A cinematic movie recommender with personal taste profiles, saved notes, and library-driven recommendations."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/app.css" />
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <div class="scene scene-a"></div>
+  <div class="scene scene-b"></div>
+  <div class="scene scene-c"></div>
+
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">CM</span>
+        <span class="brand-copy">
+          <strong>CineMatch</strong>
+          <small>taste-led movie discovery</small>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <nav class="topbar-nav hidden" id="app-nav">
+          <a class="nav-link" href="#sec-shortlist">Shortlist</a>
+          <a class="nav-link" href="#sec-genre-lab">Genre lab</a>
+          <a class="nav-link" href="#sec-history-lab">History lab</a>
+          <a class="nav-link" href="#sec-hybrid-blend">Hybrid blend</a>
+          <a class="nav-link" href="#sec-library">Your library</a>
+        </nav>
+        <button class="button button-ghost" id="nav-auth-button" type="button">
+          Sign in
+        </button>
+        <button class="button button-primary hidden" id="nav-logout-button" type="button">
+          Log out
+        </button>
+      </div>
+    </header>`
+
+    <main class="content-shell">
+      <section class="view auth-view" id="auth-view">
+        <div class="hero-card panel reveal">
+          <div class="eyebrow">Personalized discovery, without the noise</div>
+          <h1>Build a movie shelf that gets smarter every time you watch.</h1>
+          <p class="hero-copy">
+            CineMatch blends genre taste, watched titles, and catalog quality signals into
+            recommendations that feel curated instead of random.
+          </p>
+
+          <div class="stat-grid" id="catalog-stats">
+            <article class="stat-tile">
+              <span class="stat-label">Titles</span>
+              <strong class="stat-value" id="stat-total-movies">-</strong>
+            </article>
+            <article class="stat-tile">
+              <span class="stat-label">Genres</span>
+              <strong class="stat-value" id="stat-total-genres">-</strong>
+            </article>
+            <article class="stat-tile">
+              <span class="stat-label">Avg rating</span>
+              <strong class="stat-value" id="stat-average-rating">-</strong>
+            </article>
+            <article class="stat-tile">
+              <span class="stat-label">Coverage</span>
+              <strong class="stat-value" id="stat-year-range">-</strong>
+            </article>
+          </div>
+
+          <div class="feature-strip">
+            <div class="feature-chip">Save a personal library</div>
+            <div class="feature-chip">Rate films and write notes</div>
+            <div class="feature-chip">Switch between genre, history, and hybrid recs</div>
+          </div>
+        </div>
+
+        <div class="auth-card panel reveal">
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="login-tab-button" data-auth-tab="login" type="button">
+              Sign in
+            </button>
+            <button class="auth-tab" id="signup-tab-button" data-auth-tab="signup" type="button">
+              Create account
+            </button>
+          </div>
+
+          <div class="alert-banner hidden" id="auth-alert"></div>
+
+          <section class="auth-panel active" id="login-panel">
+            <form class="form-stack" id="login-form">
+              <label class="field">
+                <span>Username</span>
+                <input id="login-username" name="username" autocomplete="username" required />
+              </label>
+              <label class="field">
+                <span>Password</span>
+                <input
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                />
+              </label>
+              <button class="button button-primary" id="login-submit" type="submit">
+                Enter your dashboard
+              </button>
+            </form>
+          </section>
+
+          <section class="auth-panel" id="signup-panel">
+            <form class="form-stack" id="signup-form">
+              <label class="field">
+                <span>Username</span>
+                <input
+                  id="signup-username"
+                  name="username"
+                  autocomplete="username"
+                  minlength="3"
+                  maxlength="50"
+                  required
+                />
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input
+                  id="signup-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="optional"
+                />
+              </label>
+              <label class="field">
+                <span>Password</span>
+                <input
+                  id="signup-password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  minlength="6"
+                  maxlength="100"
+                  required
+                />
+              </label>
+
+              <div class="field">
+                <span>Pick a few genres to start</span>
+                <div class="chip-grid" id="signup-genre-grid"></div>
+                <small class="helper-text" id="signup-genre-count">Select at least 2 genres.</small>
+              </div>
+
+              <button class="button button-primary" id="signup-submit" type="submit">
+                Create account and continue
+              </button>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <section class="view app-view hidden" id="app-view">
+        <div class="dashboard-grid">
+          <aside class="panel profile-panel reveal">
+            <div class="eyebrow">Your profile</div>
+            <div class="profile-avatar" id="profile-avatar">?</div>
+            <h2 id="profile-username">Welcome back</h2>
+            <p class="muted-copy" id="profile-summary">
+              Your personal dashboard is loading.
+            </p>
+
+            <div class="profile-facts">
+              <article>
+                <span>Library size</span>
+                <strong id="profile-library-count">0</strong>
+              </article>
+              <article>
+                <span>Genres selected</span>
+                <strong id="profile-genre-count">0</strong>
+              </article>
+            </div>
+
+            <div class="field">
+              <span>Preferred genres</span>
+              <div class="chip-grid compact" id="profile-genre-grid"></div>
+              <div class="inline-actions">
+                <button class="button button-secondary" id="save-genre-preferences" type="button">
+                  Save genre preferences
+                </button>
+              </div>
+            </div>
+
+            <form class="form-stack thin" id="password-form">
+              <div class="section-heading small">
+                <div>
+                  <h3>Change password</h3>
+                  <p>Keep your account secure without leaving the page.</p>
+                </div>
+              </div>
+
+              <input id="password-form-username" name="username" autocomplete="username" type="hidden" />
+              <label class="field">
+                <span>Current password</span>
+                <input id="current-password" name="currentPassword" type="password" autocomplete="current-password" />
+              </label>
+              <label class="field">
+                <span>New password</span>
+                <input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="6" />
+              </label>
+              <button class="button button-ghost" type="submit">Update password</button>
+            </form>
+          </aside>
+
+          <div class="dashboard-main">
+            <section id="sec-shortlist" class="panel feature-panel reveal">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Tonight's shortlist</div>
+                  <h2>Recommendations for you</h2>
+                  <p id="personal-reason">We are calculating your best next watch.</p>
+                </div>
+                <button class="button button-secondary" id="refresh-personalized" type="button">
+                  Refresh picks
+                </button>
+              </div>
+              <div class="movie-grid" id="personalized-grid"></div>
+            </section>
+
+            <section id="sec-genre-lab" class="panel workspace-panel reveal">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Genre lab</div>
+                  <h2>Refine your taste profile</h2>
+                  <p>Preview what your current preferences bias toward before you save them.</p>
+                </div>
+                <div class="inline-actions">
+                  <select id="genre-top-n">
+                    <option value="8">8 picks</option>
+                    <option value="12" selected>12 picks</option>
+                    <option value="16">16 picks</option>
+                  </select>
+                  <select id="genre-min-rating">
+                    <option value="6">Rating 6+</option>
+                    <option value="7" selected>Rating 7+</option>
+                    <option value="8">Rating 8+</option>
+                  </select>
+                  <button class="button button-primary" id="run-genre-recommend" type="button">
+                    Preview genre recs
+                  </button>
+                </div>
+              </div>
+              <div class="movie-grid" id="genre-grid-results"></div>
+            </section>
+
+            <section id="sec-history-lab" class="panel workspace-panel reveal">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">History lab</div>
+                  <h2>Seed a recommendation trail</h2>
+                  <p>Pick a few titles and see what their shared DNA suggests next.</p>
+                </div>
+                <button class="button button-secondary" id="clear-history-seeds" type="button">
+                  Clear seeds
+                </button>
+              </div>
+
+              <div class="search-block">
+                <label class="field">
+                  <span>Search titles to use as history seeds</span>
+                  <input id="history-search-input" autocomplete="off" placeholder="Start typing a movie title" />
+                </label>
+                <div class="search-results hidden" id="history-search-results"></div>
+                <div class="seed-row" id="history-seeds"></div>
+              </div>
+
+              <div class="inline-actions spaced">
+                <button class="button button-primary" id="run-history-recommend" type="button">
+                  Recommend from history
+                </button>
+              </div>
+
+              <div class="movie-grid" id="history-grid-results"></div>
+            </section>
+
+            <section id="sec-hybrid-blend" class="panel workspace-panel reveal">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Hybrid blend</div>
+                  <h2>Mix genres with watched titles</h2>
+                  <p>Control how much your explicit taste and saved history influence the result.</p>
+                </div>
+                <button class="button button-secondary" id="run-hybrid-recommend" type="button">
+                  Run hybrid recs
+                </button>
+              </div>
+
+              <div class="weight-grid">
+                <label class="slider-field">
+                  <span>History weight</span>
+                  <input id="weight-content" type="range" min="0" max="1" step="0.1" value="0.7" />
+                  <strong id="weight-content-value">0.7</strong>
+                </label>
+                <label class="slider-field">
+                  <span>Genre weight</span>
+                  <input id="weight-genre" type="range" min="0" max="1" step="0.1" value="0.3" />
+                  <strong id="weight-genre-value">0.3</strong>
+                </label>
+              </div>
+
+              <div class="movie-grid" id="hybrid-grid-results"></div>
+            </section>
+
+            <section id="sec-library" class="panel workspace-panel reveal">
+              <div class="section-heading">
+                <div>
+                  <div class="eyebrow">Your library</div>
+                  <h2>Saved films, notes, and ratings</h2>
+                  <p>Search the catalog, add films, then keep track of what you thought.</p>
+                </div>
+                <div class="library-badge" id="library-badge">0 saved</div>
+              </div>
+
+              <div class="search-block">
+                <label class="field">
+                  <span>Add a movie to your library</span>
+                  <input id="library-search-input" autocomplete="off" placeholder="Search by title" />
+                </label>
+                <div class="search-results hidden" id="library-search-results"></div>
+              </div>
+
+              <div class="library-list" id="library-list"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal-shell hidden" id="movie-modal-shell">
+    <div class="modal-card">
+      <button class="modal-close" id="movie-modal-close" type="button" aria-label="Close movie details">
+        &#x2715;
+      </button>
+      <div class="modal-layout">
+        <div class="modal-poster" id="movie-modal-poster"></div>
+        <div class="modal-content">
+          <div class="eyebrow">Movie details</div>
+          <h2 id="movie-modal-title">Title</h2>
+          <p class="modal-meta" id="movie-modal-meta"></p>
+          <p class="modal-overview" id="movie-modal-overview"></p>
+          <div class="chip-row" id="movie-modal-genres"></div>
+          <div class="inline-actions">
+            <button class="button button-primary" id="movie-modal-save" type="button">
+              Save to library
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

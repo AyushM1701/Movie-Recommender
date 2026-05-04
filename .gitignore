@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite3
+
+# Large Machine Learning Models
+models/*.pkl
+
+# Large Datasets
+data/*.csv
+
+# OS generated files
+.DS_Store
+Thumbs.db

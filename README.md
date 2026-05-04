@@ -58,9 +58,7 @@ uvicorn backend.main:app --reload
 ---
 
 ## Deployment
-This project is set up to be easily deployed on services like Render.com. 
-
-If you want to use a production database (like Supabase or Neon) instead of the local SQLite file, you just need to set the `CINEMATCH_DATABASE_URL` environment variable on your hosting platform. The project will automatically use it.
+This project is set up on render https://cinematch-llrr.onrender.com
 
 ## Running Tests
 To run the automated tests for the backend API:

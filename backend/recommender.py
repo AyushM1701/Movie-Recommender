@@ -8,12 +8,8 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
-try:
-    from .config import settings
-    from .posters import PosterRepository
-except ImportError:  # pragma: no cover - fallback for direct script execution
-    from config import settings
-    from posters import PosterRepository
+from backend.config import settings
+from backend.posters import PosterRepository
 
 
 MODEL_DIR = settings.model_dir

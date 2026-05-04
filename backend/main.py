@@ -10,64 +10,34 @@ from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
-try:
-    from .auth import create_access_token, get_current_user, hash_password, verify_password
-    from .config import settings
-    from .database import GenrePreference, User, WatchHistory, create_tables, get_db
-    from .recommender import RecommendationEngine
-    from .schemas import (
-        AddWatchedRequest,
-        CatalogStatsOut,
-        ChangePasswordRequest,
-        GenreListOut,
-        GenreRecommendRequest,
-        HealthOut,
-        HistoryRecommendRequest,
-        HybridRecommendRequest,
-        LoginRequest,
-        MessageOut,
-        MovieOut,
-        PersonalRecommendationOut,
-        RecommendationOut,
-        SaveGenresRequest,
-        SearchOut,
-        SignupRequest,
-        TokenResponse,
-        UpdateWatchedRequest,
-        UserProfileOut,
-        WatchHistoryEntryOut,
-        WatchHistoryListOut,
-        WatchHistoryMutationOut,
-    )
-except ImportError:  # pragma: no cover - fallback for direct script execution
-    from auth import create_access_token, get_current_user, hash_password, verify_password
-    from config import settings
-    from database import GenrePreference, User, WatchHistory, create_tables, get_db
-    from recommender import RecommendationEngine
-    from schemas import (
-        AddWatchedRequest,
-        CatalogStatsOut,
-        ChangePasswordRequest,
-        GenreListOut,
-        GenreRecommendRequest,
-        HealthOut,
-        HistoryRecommendRequest,
-        HybridRecommendRequest,
-        LoginRequest,
-        MessageOut,
-        MovieOut,
-        PersonalRecommendationOut,
-        RecommendationOut,
-        SaveGenresRequest,
-        SearchOut,
-        SignupRequest,
-        TokenResponse,
-        UpdateWatchedRequest,
-        UserProfileOut,
-        WatchHistoryEntryOut,
-        WatchHistoryListOut,
-        WatchHistoryMutationOut,
-    )
+from backend.auth import create_access_token, get_current_user, hash_password, verify_password
+from backend.config import settings
+from backend.database import GenrePreference, User, WatchHistory, create_tables, get_db
+from backend.recommender import RecommendationEngine
+from backend.schemas import (
+    AddWatchedRequest,
+    CatalogStatsOut,
+    ChangePasswordRequest,
+    GenreListOut,
+    GenreRecommendRequest,
+    HealthOut,
+    HistoryRecommendRequest,
+    HybridRecommendRequest,
+    LoginRequest,
+    MessageOut,
+    MovieOut,
+    PersonalRecommendationOut,
+    RecommendationOut,
+    SaveGenresRequest,
+    SearchOut,
+    SignupRequest,
+    TokenResponse,
+    UpdateWatchedRequest,
+    UserProfileOut,
+    WatchHistoryEntryOut,
+    WatchHistoryListOut,
+    WatchHistoryMutationOut,
+)
 
 
 logger = logging.getLogger(__name__)

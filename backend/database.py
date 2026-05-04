@@ -19,10 +19,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Session, declarative_base, relationship, sessionmaker
 
-try:
-    from .config import settings
-except ImportError:  # pragma: no cover - fallback for direct script execution
-    from config import settings
+from backend.config import settings
 
 
 engine = create_engine(

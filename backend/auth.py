@@ -9,12 +9,8 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
-try:
-    from .config import settings
-    from .database import User, get_db
-except ImportError:  # pragma: no cover - fallback for direct script execution
-    from config import settings
-    from database import User, get_db
+from backend.config import settings
+from backend.database import User, get_db
 
 
 ALGORITHM = "HS256"

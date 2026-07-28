@@ -8,10 +8,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-try:
-    from .config import settings
-except ImportError:  # pragma: no cover - fallback for direct script execution
-    from config import settings
+from backend.config import settings
 
 
 POSTER_CSV = settings.data_dir / "poster_paths.csv"

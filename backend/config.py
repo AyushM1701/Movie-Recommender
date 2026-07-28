@@ -55,9 +55,15 @@ class Settings:
         if db_url.startswith("postgres://"):
             db_url = db_url.replace("postgres://", "postgresql://", 1)
         
-        # Fix for Supabase IPv4 pooler deprecation
-        if ".pooler.supabase.com:5432" in db_url:
-            db_url = db_url.replace(".pooler.supabase.com:5432", ".pooler.supabase.com:6543")
+        # Rewrite Supabase pooler URLs to direct connection to avoid pooler tenant errors
+        if ".pooler.supabase.com" in db_url:
+            import urllib.parse
+            parsed = urllib.parse.urlparse(db_url)
+            if parsed.username and "." in parsed.username:
+                user, project_ref = parsed.username.split(".", 1)
+                new_netloc = f"{user}:{parsed.password}@db.{project_ref}.supabase.co:5432"
+                parsed = parsed._replace(netloc=new_netloc)
+                db_url = urllib.parse.urlunparse(parsed)
         
         object.__setattr__(
             self,

@@ -36,6 +36,17 @@ function harness(fetcher=async()=>({ok:true,status:200,headers:new Headers({'con
   return {context,get,document,run:code=>vm.runInContext(code,context)};
 }
 
+test('API preserves a database-unavailable explanation instead of calling it warm-up',async()=>{
+  const detail='The personal library is temporarily unavailable. Please try again.';
+  const h=harness(async()=>({ok:false,status:503,json:async()=>({detail})}));
+  await assert.rejects(h.run("api('/auth/login')"),error=>error.message===detail);
+});
+
+test('API gives a retry message for a non-JSON hosting 503',async()=>{
+  const h=harness(async()=>({ok:false,status:503,json:async()=>{throw new SyntaxError('HTML response');}}));
+  await assert.rejects(h.run("api('/auth/login')"),error=>error.message==='CineMatch is temporarily unavailable. Please retry in a moment.');
+});
+
 test('actual search surface retains the newer result under reversed completion',async()=>{
   const pending=[];
   const h=harness(()=>new Promise(resolve=>pending.push(resolve)));

@@ -310,11 +310,11 @@ async function api(path, options = {}) {
   }
 
   if (!res.ok) {
-    if (res.status === 503) {
-      throw new Error("CineMatch is still warming up. Please retry in a moment.");
-    }
-    const err = await res.json().catch(() => ({ detail: "Request failed" }));
-    let errorMsg = err.detail || "Server error";
+    const fallback = res.status === 503
+      ? "CineMatch is temporarily unavailable. Please retry in a moment."
+      : "Request failed";
+    const err = await res.json().catch(() => ({ detail: fallback }));
+    let errorMsg = err.detail || fallback;
     if (Array.isArray(errorMsg)) {
         errorMsg = errorMsg.map(e => e.msg || JSON.stringify(e)).join(", ");
     } else if (typeof errorMsg === 'object') {

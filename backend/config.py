@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+import warnings
+from dataclasses import dataclass, field
 from pathlib import Path
 
+from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_ROOT / ".env")
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
 FRONTEND_ASSETS_DIR = FRONTEND_DIR / "assets"
 MODEL_DIR = PROJECT_ROOT / "models"
@@ -31,40 +34,47 @@ def _parse_csv_list(raw_value: str | None, fallback: tuple[str, ...]) -> list[st
     return [value for value in values if value]
 
 
+def _parse_bool(raw_value: str | None, default: bool = False) -> bool:
+    if raw_value is None:
+        return default
+    return raw_value.strip().lower() not in {"0", "false", "no", "off", ""}
+
+
 @dataclass(frozen=True)
 class Settings:
     app_name: str = "CineMatch"
     api_title: str = "CineMatch API"
     api_version: str = "3.0.0"
+    environment: str = os.getenv("CINEMATCH_ENVIRONMENT", "development").strip().lower()
     database_url: str = _default_database_url()
-    secret_key: str = os.getenv(
-        "CINEMATCH_SECRET_KEY",
-        "cinematch-development-secret-change-me",
-    )
+    secret_key: str = os.getenv("CINEMATCH_SECRET_KEY", "")
     token_expire_days: int = int(os.getenv("CINEMATCH_TOKEN_EXPIRE_DAYS", "30"))
-    cors_origins: list[str] = None  # type: ignore[assignment]
+    cors_origins: list[str] = field(default_factory=list)
     frontend_dir: Path = FRONTEND_DIR
     frontend_assets_dir: Path = FRONTEND_ASSETS_DIR
     model_dir: Path = MODEL_DIR
     data_dir: Path = DATA_DIR
-    tmdb_api_key: str = os.getenv("TMDB_API_KEY", "b7e0ee4b33e7c9bb2552547f2806d383")
-    enable_poster_lookup: bool = os.getenv("CINEMATCH_ENABLE_POSTER_LOOKUP", "1").strip() not in {"0", "false", "False"}
+    tmdb_api_key: str = os.getenv("TMDB_API_KEY", "")
+    enable_poster_lookup: bool = _parse_bool(os.getenv("CINEMATCH_ENABLE_POSTER_LOOKUP"), default=True)
+    trust_proxy_headers: bool = _parse_bool(os.getenv("CINEMATCH_TRUST_PROXY_HEADERS"), default=False)
 
     def __post_init__(self) -> None:
+        if not self.secret_key:
+            if self.environment in {"production", "prod"}:
+                raise RuntimeError(
+                    "CINEMATCH_SECRET_KEY must be set when CINEMATCH_ENVIRONMENT is production."
+                )
+            warnings.warn(
+                "CINEMATCH_SECRET_KEY is not set — using an insecure default. "
+                "Set this environment variable before deploying to production.",
+                stacklevel=2,
+            )
+            object.__setattr__(self, "secret_key", "cinematch-dev-only-insecure-key")
+
         db_url = os.getenv("CINEMATCH_DATABASE_URL", self.database_url)
         if db_url.startswith("postgres://"):
             db_url = db_url.replace("postgres://", "postgresql://", 1)
-        
-        # Rewrite Supabase pooler URLs to direct connection to avoid pooler tenant errors
-        if ".pooler.supabase.com" in db_url:
-            import urllib.parse
-            parsed = urllib.parse.urlparse(db_url)
-            if parsed.username and "." in parsed.username:
-                user, project_ref = parsed.username.split(".", 1)
-                new_netloc = f"{user}:{parsed.password}@db.{project_ref}.supabase.co:5432"
-                parsed = parsed._replace(netloc=new_netloc)
-                db_url = urllib.parse.urlunparse(parsed)
-        
+
         object.__setattr__(
             self,
             "database_url",

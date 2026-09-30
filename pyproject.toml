@@ -1,0 +1,16 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 110
+exclude = [".venv", "models", ".superpowers"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"backend/main.py" = ["B008"] # FastAPI's dependency/parameter declarations are intentional defaults.
+"backend/auth.py" = ["B008"]
+"backend/tests/*.py" = ["E402"] # Test environment configuration precedes application imports.
+"backend/evaluate_recommender.py" = ["E402"] # Offline media configuration precedes engine import.
+
+[tool.ruff.format]
+quote-style = "double"

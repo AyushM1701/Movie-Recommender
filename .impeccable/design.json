@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "product": "CineMatch",
+  "authority": "user-supplied cinema reference",
+  "tokens": {
+    "background": "#141310",
+    "surface": "#1e1d19",
+    "raised": "#292721",
+    "text": "#f1ecd8",
+    "muted": "#b8b4a5",
+    "line": "#3c3930",
+    "accent": "#ee7266",
+    "accentSurface": "#9b302b",
+    "focus": "#79c6ac",
+    "radius": "16px"
+  },
+  "typography": {
+    "body": "Manrope",
+    "wordmark": "Anton"
+  },
+  "breakpoints": [
+    540,
+    860,
+    1250
+  ]
+}

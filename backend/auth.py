@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import bcrypt
 from fastapi import Depends, HTTPException, status
@@ -11,7 +11,6 @@ from sqlalchemy.orm import Session
 
 from backend.config import settings
 from backend.database import User, get_db
-
 
 ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login", auto_error=False)
@@ -33,9 +32,9 @@ def verify_password(plain: str, hashed: str) -> bool:
         return False
 
 
-def create_access_token(user_id: int, username: str) -> str:
-    expires_at = datetime.now(timezone.utc) + timedelta(days=settings.token_expire_days)
-    payload = {"sub": username, "id": user_id, "exp": expires_at}
+def create_access_token(user_id: int, username: str, session_version: int = 0) -> str:
+    expires_at = datetime.now(UTC) + timedelta(days=settings.token_expire_days)
+    payload = {"sub": username, "id": user_id, "exp": expires_at, "sv": session_version}
     return jwt.encode(payload, settings.secret_key, algorithm=ALGORITHM)
 
 
@@ -68,7 +67,7 @@ def get_current_user(
         raise credentials_error
 
     user = db.query(User).filter(User.id == user_id).first()
-    if not user:
+    if not user or payload.get("sv") != user.session_version:
         raise credentials_error
 
     return user

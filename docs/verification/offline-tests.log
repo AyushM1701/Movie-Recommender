@@ -1,0 +1,236 @@
+03:46:07 INFO backend.main Recommendation engine ready with 12 titles.
+test_custom_lists_and_public_sharing (test_api.CineMatchApiTests.test_custom_lists_and_public_sharing) ... 03:46:07 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:07 INFO httpx HTTP Request: POST http://testserver/lists "HTTP/1.1 200 OK"
+03:46:07 INFO httpx HTTP Request: POST http://testserver/lists/1/items "HTTP/1.1 200 OK"
+03:46:07 INFO httpx HTTP Request: GET http://testserver/lists/share/bba71a962e1f "HTTP/1.1 200 OK"
+ok
+test_explore_catalog (test_api.CineMatchApiTests.test_explore_catalog) ... 03:46:07 INFO httpx HTTP Request: GET http://testserver/explore "HTTP/1.1 200 OK"
+ok
+test_health_and_catalog_stats (test_api.CineMatchApiTests.test_health_and_catalog_stats) ... 03:46:07 INFO httpx HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+ok
+test_history_hybrid_and_personal_recommendations (test_api.CineMatchApiTests.test_history_hybrid_and_personal_recommendations) ... 03:46:08 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/recommend/history "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/recommend/hybrid "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/recommend/me "HTTP/1.1 200 OK"
+ok
+test_library_export (test_api.CineMatchApiTests.test_library_export) ... 03:46:08 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/library/export?format=json "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/library/export?format=csv "HTTP/1.1 200 OK"
+ok
+test_library_rejects_invalid_poster_and_missing_watchlist_move (test_api.CineMatchApiTests.test_library_rejects_invalid_poster_and_missing_watchlist_move) ... 03:46:08 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 422 Unprocessable Entity"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/watchlist/999999/watched "HTTP/1.1 404 Not Found"
+ok
+test_manual_blend_does_not_silently_drop_seed_signals (test_api.CineMatchApiTests.test_manual_blend_does_not_silently_drop_seed_signals) ... 03:46:08 INFO httpx HTTP Request: POST http://testserver/recommend/hybrid "HTTP/1.1 422 Unprocessable Entity"
+ok
+test_movie_details_and_similar (test_api.CineMatchApiTests.test_movie_details_and_similar) ... 03:46:08 INFO httpx HTTP Request: GET http://testserver/explore "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/movies/27205/details "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/movies/27205/similar?top_n=4 "HTTP/1.1 200 OK"
+ok
+test_negative_only_history_returns_personal_recommendations (test_api.CineMatchApiTests.test_negative_only_history_returns_personal_recommendations) ... 03:46:08 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:08 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:08 INFO httpx HTTP Request: GET http://testserver/recommend/me "HTTP/1.1 200 OK"
+ok
+test_readiness_rejects_unusable_catalog (test_api.CineMatchApiTests.test_readiness_rejects_unusable_catalog) ... 03:46:08 INFO httpx HTTP Request: GET http://testserver/ready "HTTP/1.1 503 Service Unavailable"
+ok
+test_signup_login_and_profile (test_api.CineMatchApiTests.test_signup_login_and_profile) ... 03:46:09 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:09 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+03:46:09 INFO httpx HTTP Request: GET http://testserver/auth/me "HTTP/1.1 200 OK"
+ok
+test_watchlist_and_move_to_watched (test_api.CineMatchApiTests.test_watchlist_and_move_to_watched) ... 03:46:09 INFO httpx HTTP Request: POST http://testserver/auth/signup "HTTP/1.1 201 Created"
+03:46:09 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 200 OK"
+03:46:09 INFO httpx HTTP Request: GET http://testserver/watchlist "HTTP/1.1 200 OK"
+03:46:09 INFO httpx HTTP Request: POST http://testserver/watchlist/19995/watched "HTTP/1.1 200 OK"
+03:46:09 INFO httpx HTTP Request: GET http://testserver/watchlist "HTTP/1.1 200 OK"
+03:46:09 INFO httpx HTTP Request: GET http://testserver/watched "HTTP/1.1 200 OK"
+ok
+test_checksum_failure_keeps_previous_active_generation (test_artifact_generations.ArtifactGenerationTests.test_checksum_failure_keeps_previous_active_generation) ... ok
+test_incompatible_pickle_runtime_is_rejected_before_loading (test_artifact_generations.ArtifactGenerationTests.test_incompatible_pickle_runtime_is_rejected_before_loading) ... ok
+test_missing_or_corrupt_paired_catalog_is_rejected (test_artifact_generations.ArtifactGenerationTests.test_missing_or_corrupt_paired_catalog_is_rejected) ... ok
+test_nonfinite_numeric_artifacts_and_wrong_reducer_shape_are_rejected (test_artifact_generations.ArtifactGenerationTests.test_nonfinite_numeric_artifacts_and_wrong_reducer_shape_are_rejected) ... ok
+test_reordered_ids_and_feature_width_are_rejected (test_artifact_generations.ArtifactGenerationTests.test_reordered_ids_and_feature_width_are_rejected) ... ok
+test_catalog_exposes_actual_generation_provenance (test_backend_integrity_regressions.BackendIntegrityTests.test_catalog_exposes_actual_generation_provenance) ... 03:46:10 INFO httpx HTTP Request: GET http://testserver/catalog/metadata "HTTP/1.1 200 OK"
+ok
+test_collections_paginate_and_profile_is_bounded (test_backend_integrity_regressions.BackendIntegrityTests.test_collections_paginate_and_profile_is_bounded) ... 03:46:10 INFO httpx HTTP Request: GET http://testserver/watched?page=2&page_size=10 "HTTP/1.1 200 OK"
+03:46:10 INFO httpx HTTP Request: GET http://testserver/auth/me "HTTP/1.1 200 OK"
+ok
+test_full_exclusions_are_separate_from_bounded_profile (test_backend_integrity_regressions.BackendIntegrityTests.test_full_exclusions_are_separate_from_bounded_profile) ... 03:46:10 INFO httpx HTTP Request: GET http://testserver/recommend/me "HTTP/1.1 200 OK"
+ok
+test_list_summaries_use_a_bounded_number_of_queries (test_backend_integrity_regressions.BackendIntegrityTests.test_list_summaries_use_a_bounded_number_of_queries) ... 03:46:10 INFO httpx HTTP Request: GET http://testserver/lists/my?page_size=10 "HTTP/1.1 200 OK"
+ok
+test_new_library_write_uses_canonical_metadata_and_rejects_unknown (test_backend_integrity_regressions.BackendIntegrityTests.test_new_library_write_uses_canonical_metadata_and_rejects_unknown) ... 03:46:11 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:11 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 404 Not Found"
+ok
+test_nullable_patch_clears_only_supplied_fields (test_backend_integrity_regressions.BackendIntegrityTests.test_nullable_patch_clears_only_supplied_fields) ... 03:46:11 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:11 INFO httpx HTTP Request: PATCH http://testserver/watched/1 "HTTP/1.1 200 OK"
+03:46:11 INFO httpx HTTP Request: PATCH http://testserver/watched/1 "HTTP/1.1 200 OK"
+ok
+test_other_user_cannot_manage_private_list (test_backend_integrity_regressions.BackendIntegrityTests.test_other_user_cannot_manage_private_list) ... 03:46:11 INFO httpx HTTP Request: POST http://testserver/lists "HTTP/1.1 200 OK"
+03:46:11 INFO httpx HTTP Request: GET http://testserver/lists/1 "HTTP/1.1 404 Not Found"
+03:46:11 INFO httpx HTTP Request: PATCH http://testserver/lists/1 "HTTP/1.1 404 Not Found"
+03:46:11 INFO httpx HTTP Request: DELETE http://testserver/lists/1 "HTTP/1.1 404 Not Found"
+ok
+test_password_change_revokes_old_token (test_backend_integrity_regressions.BackendIntegrityTests.test_password_change_revokes_old_token) ... 03:46:12 INFO httpx HTTP Request: PUT http://testserver/auth/password "HTTP/1.1 200 OK"
+03:46:12 INFO httpx HTTP Request: GET http://testserver/auth/me "HTTP/1.1 401 Unauthorized"
+03:46:12 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+ok
+test_pre_migration_token_without_version_claim_is_rejected (test_backend_integrity_regressions.BackendIntegrityTests.test_pre_migration_token_without_version_claim_is_rejected) ... 03:46:12 INFO httpx HTTP Request: GET http://testserver/auth/me "HTTP/1.1 401 Unauthorized"
+ok
+test_private_list_owner_manage_nonowner_and_summary (test_backend_integrity_regressions.BackendIntegrityTests.test_private_list_owner_manage_nonowner_and_summary) ... 03:46:12 INFO httpx HTTP Request: POST http://testserver/lists "HTTP/1.1 200 OK"
+03:46:12 INFO httpx HTTP Request: GET http://testserver/lists/1 "HTTP/1.1 200 OK"
+03:46:12 INFO httpx HTTP Request: PATCH http://testserver/lists/1 "HTTP/1.1 200 OK"
+03:46:12 INFO httpx HTTP Request: GET http://testserver/lists/share/59db9683e9b2 "HTTP/1.1 404 Not Found"
+03:46:12 INFO httpx HTTP Request: GET http://testserver/lists/my "HTTP/1.1 200 OK"
+ok
+test_ready_does_not_pass_after_migration_failure (test_backend_integrity_regressions.BackendIntegrityTests.test_ready_does_not_pass_after_migration_failure) ... 03:46:13 INFO httpx HTTP Request: GET http://testserver/ready "HTTP/1.1 503 Service Unavailable"
+ok
+test_ready_does_not_pass_with_missing_personal_schema (test_backend_integrity_regressions.BackendIntegrityTests.test_ready_does_not_pass_with_missing_personal_schema) ... 03:46:13 INFO httpx HTTP Request: GET http://testserver/ready "HTTP/1.1 503 Service Unavailable"
+ok
+test_ready_reports_database_failure_and_recovery (test_backend_integrity_regressions.BackendIntegrityTests.test_ready_reports_database_failure_and_recovery) ... 03:46:13 INFO httpx HTTP Request: GET http://testserver/ready "HTTP/1.1 503 Service Unavailable"
+03:46:13 INFO httpx HTTP Request: GET http://testserver/ready "HTTP/1.1 200 OK"
+ok
+test_update_existing_watched_removes_legacy_overlap (test_backend_integrity_regressions.BackendIntegrityTests.test_update_existing_watched_removes_legacy_overlap) ... 03:46:13 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:13 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:13 INFO httpx HTTP Request: GET http://testserver/watchlist "HTTP/1.1 200 OK"
+ok
+test_visible_movie_library_status (test_backend_integrity_regressions.BackendIntegrityTests.test_visible_movie_library_status) ... 03:46:13 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:13 INFO httpx HTTP Request: GET http://testserver/library/status?movie_ids=1,2 "HTTP/1.1 200 OK"
+03:46:13 INFO httpx HTTP Request: GET http://testserver/library/status?movie_ids=bad "HTTP/1.1 422 Unprocessable Entity"
+ok
+test_watch_batch_preserves_known_cards_when_legacy_id_is_missing (test_backend_integrity_regressions.BackendIntegrityTests.test_watch_batch_preserves_known_cards_when_legacy_id_is_missing) ... 03:46:14 INFO httpx HTTP Request: POST http://testserver/watch/options "HTTP/1.1 200 OK"
+ok
+test_watch_batch_validates_country_and_batch_size (test_backend_integrity_regressions.BackendIntegrityTests.test_watch_batch_validates_country_and_batch_size) ... 03:46:14 INFO httpx HTTP Request: POST http://testserver/watch/options "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watch/options "HTTP/1.1 422 Unprocessable Entity"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watch/options "HTTP/1.1 422 Unprocessable Entity"
+ok
+test_watched_cannot_be_added_to_watchlist_and_repeated_move_is_safe (test_backend_integrity_regressions.BackendIntegrityTests.test_watched_cannot_be_added_to_watchlist_and_repeated_move_is_safe) ... 03:46:14 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 409 Conflict"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watchlist/1/watched "HTTP/1.1 200 OK"
+ok
+test_parallel_watched_and_bookmark_writes_never_overlap (test_backend_integrity_regressions.LibraryRaceTests.test_parallel_watched_and_bookmark_writes_never_overlap) ... 03:46:14 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 409 Conflict"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watched "HTTP/1.1 200 OK"
+03:46:14 INFO httpx HTTP Request: POST http://testserver/watchlist "HTTP/1.1 409 Conflict"
+ok
+test_first_pooled_connection_has_sqlite_pragmas (test_backend_integrity_regressions.MigrationIntegrityTests.test_first_pooled_connection_has_sqlite_pragmas) ... ok
+test_in_memory_sqlite_schema_is_shared_with_request_threads (test_backend_integrity_regressions.MigrationIntegrityTests.test_in_memory_sqlite_schema_is_shared_with_request_threads) ... ok
+test_legacy_migration_preserves_entries_backups_and_is_idempotent (test_backend_integrity_regressions.MigrationIntegrityTests.test_legacy_migration_preserves_entries_backups_and_is_idempotent) ... 03:46:14 INFO backend.database Saved a personal-database backup before schema migration.
+ok
+test_postgres_date_columns_compile_using_timestamp_type (test_backend_integrity_regressions.MigrationIntegrityTests.test_postgres_date_columns_compile_using_timestamp_type) ... ok
+test_transaction_failure_rolls_back_and_next_request_can_write (test_backend_integrity_regressions.MigrationIntegrityTests.test_transaction_failure_rolls_back_and_next_request_can_write) ... ok
+test_genre_only_hybrid_and_all_supported_genres (test_backend_integrity_regressions.SchemaIntegrityTests.test_genre_only_hybrid_and_all_supported_genres) ... ok
+test_nonfinite_catalog_rating_rejected (test_backend_integrity_regressions.SchemaIntegrityTests.test_nonfinite_catalog_rating_rejected) ... ok
+test_numeric_changed_password_rejected (test_backend_integrity_regressions.SchemaIntegrityTests.test_numeric_changed_password_rejected) ... ok
+test_whitespace_list_title_rejected (test_backend_integrity_regressions.SchemaIntegrityTests.test_whitespace_list_title_rejected) ... ok
+test_catalog_rating_filter_applies_before_global_pagination (test_catalog_pipeline.CatalogPipelineTests.test_catalog_rating_filter_applies_before_global_pagination) ... ok
+test_catalog_retains_unrated_incomplete_recent_rows_and_browses_history (test_catalog_pipeline.CatalogPipelineTests.test_catalog_retains_unrated_incomplete_recent_rows_and_browses_history) ... ok
+Discovery 2026-09-01..2026-09-01: 2 IDs / 2 pages
+test_discovery_walks_all_pages_deduplicates_and_splits_overflow (test_catalog_pipeline.CatalogPipelineTests.test_discovery_walks_all_pages_deduplicates_and_splits_overflow) ... ok
+Discovery 2026-09-02..2026-09-02: 2 IDs / 2 pages
+test_failed_model_build_preserves_active_pair_and_delivered_seed (test_catalog_pipeline.CatalogPipelineTests.test_failed_model_build_preserves_active_pair_and_delivered_seed) ... ok
+test_failed_refresh_preserves_previous_supplement (test_catalog_pipeline.CatalogPipelineTests.test_failed_refresh_preserves_previous_supplement) ... ok
+test_historical_and_supplement_credits_merge_without_erasing_good_data (test_catalog_pipeline.CatalogPipelineTests.test_historical_and_supplement_credits_merge_without_erasing_good_data) ... ok
+test_invalid_authentication_stops_all_remaining_refresh_requests (test_catalog_pipeline.CatalogPipelineTests.test_invalid_authentication_stops_all_remaining_refresh_requests) ... ok
+Loading versioned catalog sources...
+   Loaded source rows: 2
+   Eligible historical/recent movies with content: 2
+Fitting field-specific TF-IDF vectorizers...
+     genres:      1 features x 0.75
+   keywords:      1 features x 1.00
+   overview:      7 features x 1.80
+   metadata:      1 features x 0.80
+   Combined weighted matrix: (2, 10)
+Fitting 1-dimension latent semantic embeddings...
+Saving immutable recommendation generation...
+
+Preprocessing complete
+   movies.pkl              -> 2 movies
+   tfidf_matrix.npz        -> (2, 10)
+   semantic_embeddings.npy -> (2, 1)
+   semantic backend        -> lsa
+Loading versioned catalog sources...
+   Loaded source rows: 2
+   Eligible historical/recent movies with content: 2
+Fitting field-specific TF-IDF vectorizers...
+     genres:      1 features x 0.75
+   keywords:      1 features x 1.00
+   overview:      7 features x 1.80
+   metadata:      1 features x 0.80
+   Combined weighted matrix: (2, 10)
+Loading versioned catalog sources...
+Discovery 2026-09-01..2026-09-01: 1 IDs / 1 pages
+Detail enrichment: 0 checkpointed; 1 remaining
+test_invalid_details_do_not_publish_over_successful_refresh_pair (test_catalog_pipeline.CatalogPipelineTests.test_invalid_details_do_not_publish_over_successful_refresh_pair) ... ok
+test_lsa_content_projection_matches_plot_before_genre_only_overlap (test_catalog_pipeline.CatalogPipelineTests.test_lsa_content_projection_matches_plot_before_genre_only_overlap) ... ok
+test_missing_append_sections_are_fetched_or_marked_explicitly_unavailable (test_catalog_pipeline.CatalogPipelineTests.test_missing_append_sections_are_fetched_or_marked_explicitly_unavailable) ... ok
+test_normal_source_excludes_adult_and_video_rows_without_truthy_string_bug (test_catalog_pipeline.CatalogPipelineTests.test_normal_source_excludes_adult_and_video_rows_without_truthy_string_bug) ... ok
+Fitting 3-dimension latent semantic embeddings...
+Loading versioned catalog sources...
+Discovery 2026-09-01..2026-09-01: 1 IDs / 1 pages
+Discovery 2026-09-02..2026-09-02: 1 IDs / 1 pages
+test_page_duplicates_are_reconciled_in_smaller_date_windows (test_catalog_pipeline.CatalogPipelineTests.test_page_duplicates_are_reconciled_in_smaller_date_windows) ... ok
+test_single_day_pagination_duplicates_reconcile_with_independent_sort (test_catalog_pipeline.CatalogPipelineTests.test_single_day_pagination_duplicates_reconcile_with_independent_sort) ... ok
+Discovery 2026-09-01..2026-09-01: 2 IDs / 2 pages
+test_small_offline_build_publishes_validated_generation_and_catalog (test_catalog_pipeline.CatalogPipelineTests.test_small_offline_build_publishes_validated_generation_and_catalog) ... ok
+Loading versioned catalog sources...
+   Loaded source rows: 4
+   Eligible historical/recent movies with content: 2
+Fitting field-specific TF-IDF vectorizers...
+     genres:      1 features x 0.75
+   keywords:      1 features x 1.00
+   overview:      7 features x 1.80
+   metadata:      1 features x 0.80
+   Combined weighted matrix: (2, 10)
+Fitting 1-dimension latent semantic embeddings...
+Saving immutable recommendation generation...
+
+Preprocessing complete
+   movies.pkl              -> 2 movies
+   tfidf_matrix.npz        -> (2, 10)
+   semantic_embeddings.npy -> (2, 1)
+   semantic backend        -> lsa
+Discovery 2026-09-01..2026-09-01: 2 IDs / 1 pages
+Detail enrichment: 0 checkpointed; 2 remaining
+Published 1 detailed movies and paired credits: 20260930T221615Z-7d9c1d6c
+test_verified_deleted_movie_is_reported_without_blocking_complete_refresh (test_catalog_pipeline.CatalogPipelineTests.test_verified_deleted_movie_is_reported_without_blocking_complete_refresh) ... ok
+test_confirmed_404_expires_without_poisoning_other_movies (test_media_service_regressions.MediaServiceTests.test_confirmed_404_expires_without_poisoning_other_movies) ... ok
+test_distinct_movies_overlap_and_same_movie_deduplicates (test_media_service_regressions.MediaServiceTests.test_distinct_movies_overlap_and_same_movie_deduplicates) ... ok
+test_failed_poster_fill_is_retryable (test_media_service_regressions.MediaServiceTests.test_failed_poster_fill_is_retryable) ... ok
+test_provider_cache_keeps_listings_six_hours_but_retries_missing_region_sooner (test_media_service_regressions.MediaServiceTests.test_provider_cache_keeps_listings_six_hours_but_retries_missing_region_sooner) ... ok
+test_provider_checked_at_stays_at_successful_fetch_time (test_media_service_regressions.MediaServiceTests.test_provider_checked_at_stays_at_successful_fetch_time) ... ok
+test_provider_groups_and_safe_links (test_media_service_regressions.MediaServiceTests.test_provider_groups_and_safe_links) ... ok
+test_provider_missing_and_outage_are_distinct (test_media_service_regressions.MediaServiceTests.test_provider_missing_and_outage_are_distinct) ... ok
+test_transient_failure_recovers_on_next_lookup (test_media_service_regressions.MediaServiceTests.test_transient_failure_recovers_on_next_lookup) ... ok
+test_ttl_expiry_and_cache_capacity (test_media_service_regressions.MediaServiceTests.test_ttl_expiry_and_cache_capacity) ... ok
+test_fresh_schema_auth_nullable_patch_and_foreign_keys (test_postgres_migrations.PostgresMigrationTests.test_fresh_schema_auth_nullable_patch_and_foreign_keys) ... skipped 'No explicit disposable PostgreSQL test service.'
+test_legacy_schema_preserves_saved_entries_and_constraints (test_postgres_migrations.PostgresMigrationTests.test_legacy_schema_preserves_saved_entries_and_constraints) ... skipped 'No explicit disposable PostgreSQL test service.'
+test_corrupt_generation_does_not_fall_back_to_old_models (test_recommender_artifact_loading.PublishedModelLoadingTests.test_corrupt_generation_does_not_fall_back_to_old_models) ... ok
+test_engine_loads_published_generation_without_legacy_root_files (test_recommender_artifact_loading.PublishedModelLoadingTests.test_engine_loads_published_generation_without_legacy_root_files) ... ok
+test_artifacts_are_aligned_and_normalized (test_recommender_quality.RecommendationQualityTests.test_artifacts_are_aligned_and_normalized) ... ok
+test_golden_franchise_neighbours (test_recommender_quality.RecommendationQualityTests.test_golden_franchise_neighbours) ... ok
+test_personalized_ranking_is_deterministic_and_rating_aware (test_recommender_quality.RecommendationQualityTests.test_personalized_ranking_is_deterministic_and_rating_aware) ... ok
+test_complete_exclusions_are_independent_of_profile_sample (test_recommender_regressions.RecommenderRegressionTests.test_complete_exclusions_are_independent_of_profile_sample) ... ok
+test_evaluation_compares_same_sample_against_simple_baselines (test_recommender_regressions.RecommenderRegressionTests.test_evaluation_compares_same_sample_against_simple_baselines) ... ok
+test_explicit_thresholds_are_never_relaxed (test_recommender_regressions.RecommenderRegressionTests.test_explicit_thresholds_are_never_relaxed) ... ok
+test_genre_only_hybrid_has_no_phantom_content_signal (test_recommender_regressions.RecommenderRegressionTests.test_genre_only_hybrid_has_no_phantom_content_signal) ... ok
+test_negative_only_history_respects_watched_exclusion_in_all_fallbacks (test_recommender_regressions.RecommenderRegressionTests.test_negative_only_history_respects_watched_exclusion_in_all_fallbacks) ... ok
+test_negative_only_profile_demotes_similar_unwatched_content (test_recommender_regressions.RecommenderRegressionTests.test_negative_only_profile_demotes_similar_unwatched_content) ... ok
+test_old_films_are_present_in_explore_archive (test_recommender_regressions.RecommenderRegressionTests.test_old_films_are_present_in_explore_archive) ... ok
+test_partial_title_is_not_an_exact_match (test_recommender_regressions.RecommenderRegressionTests.test_partial_title_is_not_an_exact_match) ... ok
+test_recall_uses_all_relevant_candidates_not_k (test_recommender_regressions.RecommenderRegressionTests.test_recall_uses_all_relevant_candidates_not_k) ... ok
+test_runtime_metadata_from_csv_float_strings_is_normalized (test_recommender_regressions.RecommenderRegressionTests.test_runtime_metadata_from_csv_float_strings_is_normalized) ... ok
+test_seed_only_hybrid_ignores_unused_genre_weight (test_recommender_regressions.RecommenderRegressionTests.test_seed_only_hybrid_ignores_unused_genre_weight) ... ok
+test_theme_search_is_numeric_and_only_returns_content_matches (test_recommender_regressions.RecommenderRegressionTests.test_theme_search_is_numeric_and_only_returns_content_matches) ... ok
+test_title_search_and_details_include_catalog_only_movies (test_recommender_regressions.RecommenderRegressionTests.test_title_search_and_details_include_catalog_only_movies) ... ok
+test_unknown_query_does_not_claim_a_theme_match (test_recommender_regressions.RecommenderRegressionTests.test_unknown_query_does_not_claim_a_theme_match) ... ok
+test_render_runtime_is_valid_and_python_version_is_explicit (test_release_contracts.ReleaseContractTests.test_render_runtime_is_valid_and_python_version_is_explicit) ... ok
+test_runtime_lock_contains_only_exact_versions (test_release_contracts.ReleaseContractTests.test_runtime_lock_contains_only_exact_versions) ... ok
+
+----------------------------------------------------------------------
+Ran 92 tests in 8.175s
+
+OK (skipped=2)

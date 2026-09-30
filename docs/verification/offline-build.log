@@ -1,0 +1,17 @@
+Loading versioned catalog sources...
+   Loaded source rows: 56,542
+   Eligible historical/recent movies with content: 54,461
+Fitting field-specific TF-IDF vectorizers...
+     genres:     19 features x 0.75
+   keywords: 15,000 features x 1.00
+   overview: 40,000 features x 1.80
+   metadata: 15,000 features x 0.80
+   Combined weighted matrix: (54461, 70019)
+Fitting 256-dimension latent semantic embeddings...
+Saving immutable recommendation generation...
+
+Preprocessing complete
+   movies.pkl              -> 54,461 movies
+   tfidf_matrix.npz        -> (54461, 70019)
+   semantic_embeddings.npy -> (54461, 256)
+   semantic backend        -> lsa

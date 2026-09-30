@@ -1,9 +1,16 @@
 services:
   - type: web
     name: cinematch
-    env: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    runtime: python
+    buildCommand: pip install -r backend/requirements.lock && python -m backend.data_preprocessing
+    startCommand: gunicorn backend.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    healthCheckPath: /ready
     envVars:
       - key: CINEMATCH_DATABASE_URL
         sync: false
+      - key: CINEMATCH_SECRET_KEY
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: CINEMATCH_ENVIRONMENT
+        value: production

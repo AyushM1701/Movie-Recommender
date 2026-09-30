@@ -17,8 +17,28 @@ env/
 
 # Large Machine Learning Models
 models/*.pkl
+models/*.npz
+models/*.npy
+models/*.json
+models/generations/
+
+# Generated refresh files and local investigation scratch files
+*.csv.tmp
+temp.json
+page.html
+scratch_*.js
+scratch_*.html
+data/TMDB_movie_dataset_v11.csv
+data/refresh_staging/
+data/refresh_generations/
+data/refresh_active.json
+data/*_run.log
+*.pre-migration-*.bak
 
 
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Secrets
+.env

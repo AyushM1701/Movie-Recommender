@@ -1,0 +1,34 @@
+{
+  "ready_status": 200,
+  "health": {
+    "status": "healthy",
+    "app": "CineMatch",
+    "version": "3.0.0",
+    "catalog": {
+      "total_movies": 56542,
+      "total_genres": 20,
+      "average_rating": 3.05,
+      "posters_available": 51077,
+      "year_range": [
+        1888,
+        2026
+      ]
+    }
+  },
+  "catalog_total": 37499,
+  "model_rows": 54461,
+  "provenance_cutoff": "2026-09-30",
+  "provenance_retrieved_at": "2026-09-30T21:51:56.716213+00:00",
+  "catalog_stats": {
+    "total_movies": 56542,
+    "total_genres": 20,
+    "average_rating": 3.05,
+    "posters_available": 51077,
+    "year_range": [
+      1888,
+      2026
+    ]
+  },
+  "no_env_file": true,
+  "no_raw_source": true
+}

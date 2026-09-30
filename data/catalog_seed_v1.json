@@ -1,0 +1,412 @@
+{
+  "cutoff": "2026-09-30",
+  "coverage": "live_verified_date_scope",
+  "sources": [
+    {
+      "name": "TMDB_movie_dataset_v11.csv",
+      "sha256": "1780e4ecb2f8a367a5cde60307618bcdf36c21b28d2133fbc1ffd550176ad5d0"
+    },
+    {
+      "name": "tmdb_5000_movies.csv",
+      "sha256": "1e0584a8dd374120e4ed4f2b81f0d2bd0eb95a554708e4a350d00ed5c46d2825"
+    },
+    {
+      "name": "tmdb_latest_movies.csv",
+      "sha256": "6546189d2f091cb2796a6289b808dcb8bd6ea33997126d2ffa11cf3c8cebf898"
+    },
+    {
+      "name": "tmdb_5000_credits.csv",
+      "sha256": "9d0050599ff88d40366c4841204b1489862bca346bfa46c20b05a65d14508435"
+    },
+    {
+      "name": "tmdb_latest_credits.csv",
+      "sha256": "52e69c95b105921b29ae834a20ebc23d5406b30e1b69ed2c0d155955c132b588"
+    },
+    {
+      "name": "tmdb_5000_movies.csv",
+      "sha256": "1e0584a8dd374120e4ed4f2b81f0d2bd0eb95a554708e4a350d00ed5c46d2825"
+    },
+    {
+      "name": "tmdb_latest_movies.csv",
+      "sha256": "6546189d2f091cb2796a6289b808dcb8bd6ea33997126d2ffa11cf3c8cebf898"
+    },
+    {
+      "name": "movies.csv",
+      "sha256": "03cd007bda8a0c20eebf52d42cdb2305f907934899b4828ab57098962e473e37"
+    },
+    {
+      "name": "tmdb_5000_credits.csv",
+      "sha256": "9d0050599ff88d40366c4841204b1489862bca346bfa46c20b05a65d14508435"
+    },
+    {
+      "name": "tmdb_latest_credits.csv",
+      "sha256": "52e69c95b105921b29ae834a20ebc23d5406b30e1b69ed2c0d155955c132b588"
+    },
+    {
+      "name": "credits.csv",
+      "sha256": "289946213c4190a6d9947022fda510398ab4dcb2bb7d34463ce68b99a3e4dac5"
+    }
+  ],
+  "seed_version": 1,
+  "seed_sha256": "edd18d1c14fde29a66a34aa33c93aad9d40784323170c2734fafeb7d7bda5eaf",
+  "seed_rows": 56542,
+  "generated_at": "2026-09-30T21:52:59.801146+00:00",
+  "refresh": {
+    "windows": [
+      {
+        "start": "2026-01-01",
+        "end": "2026-01-16",
+        "reported_results": 1681,
+        "pages": 85,
+        "unique_ids": 1681,
+        "verified_results": 1681,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-01-17",
+        "end": "2026-01-31",
+        "reported_results": 1936,
+        "pages": 97,
+        "unique_ids": 1936,
+        "verified_results": 1936,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-02-01",
+        "end": "2026-02-28",
+        "reported_results": 3245,
+        "pages": 163,
+        "unique_ids": 3245,
+        "verified_results": 3245,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-03-01",
+        "end": "2026-03-16",
+        "reported_results": 1999,
+        "pages": 100,
+        "unique_ids": 1999,
+        "verified_results": 1999,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-03-17",
+        "end": "2026-03-24",
+        "reported_results": 1152,
+        "pages": 58,
+        "unique_ids": 1152,
+        "verified_results": 1152,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-03-25",
+        "end": "2026-03-26",
+        "reported_results": 303,
+        "pages": 16,
+        "unique_ids": 303,
+        "verified_results": 303,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-03-27",
+        "end": "2026-03-27",
+        "reported_results": 224,
+        "pages": 12,
+        "unique_ids": 223,
+        "verified_results": 223,
+        "count_drift": true,
+        "reconciliation_sort": "popularity.desc:primary_release_year",
+        "complete": true
+      },
+      {
+        "start": "2026-03-28",
+        "end": "2026-03-28",
+        "reported_results": 162,
+        "pages": 9,
+        "unique_ids": 162,
+        "verified_results": 162,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-03-29",
+        "end": "2026-03-31",
+        "reported_results": 271,
+        "pages": 14,
+        "unique_ids": 271,
+        "verified_results": 271,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-04-01",
+        "end": "2026-04-30",
+        "reported_results": 4383,
+        "pages": 220,
+        "unique_ids": 4383,
+        "verified_results": 4383,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-05-01",
+        "end": "2026-05-16",
+        "reported_results": 2546,
+        "pages": 128,
+        "unique_ids": 2546,
+        "verified_results": 2546,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-05-17",
+        "end": "2026-05-31",
+        "reported_results": 2228,
+        "pages": 112,
+        "unique_ids": 2228,
+        "verified_results": 2228,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "reported_results": 4388,
+        "pages": 220,
+        "unique_ids": 4388,
+        "verified_results": 4388,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-07-01",
+        "end": "2026-07-16",
+        "reported_results": 1520,
+        "pages": 76,
+        "unique_ids": 1520,
+        "verified_results": 1520,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-07-17",
+        "end": "2026-07-31",
+        "reported_results": 1331,
+        "pages": 67,
+        "unique_ids": 1331,
+        "verified_results": 1331,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-08-01",
+        "end": "2026-08-16",
+        "reported_results": 1629,
+        "pages": 82,
+        "unique_ids": 1629,
+        "verified_results": 1629,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-08-17",
+        "end": "2026-08-31",
+        "reported_results": 1574,
+        "pages": 79,
+        "unique_ids": 1574,
+        "verified_results": 1574,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-09-01",
+        "end": "2026-09-15",
+        "reported_results": 1934,
+        "pages": 97,
+        "unique_ids": 1934,
+        "verified_results": 1934,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      },
+      {
+        "start": "2026-09-16",
+        "end": "2026-09-30",
+        "reported_results": 2038,
+        "pages": 102,
+        "unique_ids": 2038,
+        "verified_results": 2038,
+        "count_drift": false,
+        "reconciliation_sort": null,
+        "complete": true
+      }
+    ],
+    "excluded": [],
+    "discovery_complete": true,
+    "unique_discovered_ids": 34546,
+    "cutoff": "2026-09-30",
+    "start": "2026-01-01",
+    "retrieved_at": "2026-09-30T21:51:56.716213+00:00",
+    "scope": "TMDB non-adult, non-video movies across all languages/countries with primary release date in range",
+    "details_success": 34520,
+    "credits_success": 34519,
+    "unavailable_sections": [
+      {
+        "id": 1660724,
+        "sections": [
+          "credits",
+          "keywords"
+        ],
+        "reason": "source_returned_404"
+      }
+    ],
+    "failed_ids": [],
+    "detail_excluded": [
+      {
+        "id": 1689744,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1749577,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1751410,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1781760,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1783292,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1783906,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784046,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784633,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784674,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784696,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784701,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784773,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784777,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784783,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784790,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784814,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784938,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1784993,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785003,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785018,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785066,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785071,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785076,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785078,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785095,
+        "reason": "detail_outside_scope"
+      },
+      {
+        "id": 1785099,
+        "reason": "detail_outside_scope"
+      }
+    ],
+    "retries": 0,
+    "complete": true,
+    "feature_coverage": {
+      "with_overview": 28393,
+      "with_genres": 28021,
+      "with_keywords": 11185,
+      "with_poster": 30608,
+      "with_votes": 6657,
+      "with_cast": 26509,
+      "with_director": 32070
+    },
+    "generation": "20260930T215157Z-f3c55789",
+    "checksums": {
+      "movies.csv": "03cd007bda8a0c20eebf52d42cdb2305f907934899b4828ab57098962e473e37",
+      "credits.csv": "289946213c4190a6d9947022fda510398ab4dcb2bb7d34463ce68b99a3e4dac5"
+    }
+  },
+  "retrieved_at": "2026-09-30T21:51:56.716213+00:00",
+  "catalog_generation": "20260930T215157Z-f3c55789",
+  "excluded_adult_or_video": 2089
+}

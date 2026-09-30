@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: actual search surface retains the newer result under reversed completion
+ok 1 - actual search surface retains the newer result under reversed completion
+  ---
+  duration_ms: 20.3501
+  type: 'test'
+  ...
+# Subtest: actual genre selection preserves its button and separate signup/browse state
+ok 2 - actual genre selection preserves its button and separate signup/browse state
+  ---
+  duration_ms: 1.2235
+  type: 'test'
+  ...
+# Subtest: actual modal stack gives only the top dialog modal ownership and Escape
+ok 3 - actual modal stack gives only the top dialog modal ownership and Escape
+  ---
+  duration_ms: 1.4656
+  type: 'test'
+  ...
+# Subtest: account generation protects profile data after a session replacement
+ok 4 - account generation protects profile data after a session replacement
+  ---
+  duration_ms: 1.5216
+  type: 'test'
+  ...
+# Subtest: personal pagination resets on account replacement without resetting archive browsing
+ok 5 - personal pagination resets on account replacement without resetting archive browsing
+  ---
+  duration_ms: 1.0531
+  type: 'test'
+  ...
+# Subtest: a completed owner-list mutation cannot reverse newer navigation
+ok 6 - a completed owner-list mutation cannot reverse newer navigation
+  ---
+  duration_ms: 1.4492
+  type: 'test'
+  ...
+# Subtest: browser availability cache expires and evicts its oldest entry
+ok 7 - browser availability cache expires and evicts its oldest entry
+  ---
+  duration_ms: 2.9033
+  type: 'test'
+  ...
+# Subtest: exploration shows one provider link while movie details show all providers
+ok 8 - exploration shows one provider link while movie details show all providers
+  ---
+  duration_ms: 1.701
+  type: 'test'
+  ...
+# Subtest: browser caching preserves the original provider check time
+ok 9 - browser caching preserves the original provider check time
+  ---
+  duration_ms: 1.9282
+  type: 'test'
+  ...
+# Subtest: malformed stored preferences cannot stop startup
+ok 10 - malformed stored preferences cannot stop startup
+  ---
+  duration_ms: 1.099
+  type: 'test'
+  ...
+# Subtest: a newer search and session change reject older responses
+ok 11 - a newer search and session change reject older responses
+  ---
+  duration_ms: 0.3189
+  type: 'test'
+  ...
+# Subtest: country replacement cancels prior provider generation independently of search
+ok 12 - country replacement cancels prior provider generation independently of search
+  ---
+  duration_ms: 0.1134
+  type: 'test'
+  ...
+# Subtest: hybrid sends only visible inputs and honest effective complementary weights
+ok 13 - hybrid sends only visible inputs and honest effective complementary weights
+  ---
+  duration_ms: 0.5397
+  type: 'test'
+  ...
+# Subtest: public and owner list routes survive reload and exit to explore
+ok 14 - public and owner list routes survive reload and exit to explore
+  ---
+  duration_ms: 0.3258
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 155.3943

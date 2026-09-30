@@ -3,58 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CineMatch</title>
+  <title>CineMatch — Smart Movie Discovery &amp; Taste Shelf</title>
   <meta
     name="description"
-    content="A cinematic movie recommender with personal taste profiles, saved notes, and library-driven recommendations."
+    content="CineMatch blends genre taste, watched titles, and catalog quality signals with trailers, cast credits, watchlists, and shareable curated lists."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/assets/app.css" />
-  <script type="module" src="/assets/app.js"></script>
+  <link rel="stylesheet" href="/assets/app.css?v=33" />
+  <script type="module" src="/assets/app.js?v=33"></script>
 </head>
-<body>
-  <div class="scene scene-a"></div>
-  <div class="scene scene-b"></div>
-  <div class="scene scene-c"></div>
+<body><a class="skip-link" href="#main-content">Skip to movies</a>
+
+
 
   <div class="site-shell">
     <header class="topbar">
-      <a class="brand" href="/">
-        <span class="brand-mark">CM</span>
+      <a class="brand" href="/" id="brand-link">
+        <span class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2.5" ry="2.5"/>
+            <line x1="7" y1="2" x2="7" y2="22"/>
+            <line x1="17" y1="2" x2="17" y2="22"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <line x1="2" y1="7" x2="7" y2="7"/>
+            <line x1="2" y1="17" x2="7" y2="17"/>
+            <line x1="17" y1="7" x2="22" y2="7"/>
+            <line x1="17" y1="17" x2="22" y2="17"/>
+          </svg>
+        </span>
         <span class="brand-copy">
-          <strong>CineMatch</strong>
+          <strong>Cine<span class="hl">Match</span></strong>
           <small>taste-led movie discovery</small>
         </span>
       </a>
 
       <div class="topbar-actions">
-        <nav class="topbar-nav hidden" id="app-nav">
-          <a class="nav-link" href="#sec-shortlist">Shortlist</a>
-          <a class="nav-link" href="#sec-genre-lab">Genre lab</a>
-          <a class="nav-link" href="#sec-history-lab">History lab</a>
-          <a class="nav-link" href="#sec-hybrid-blend">Hybrid blend</a>
-          <a class="nav-link" href="#sec-library">Your library</a>
+        <nav class="topbar-nav" id="app-nav" aria-label="Main navigation">
+          <div class="nav-drawer-header">
+            <span class="nav-drawer-title">Navigation</span>
+            <button class="nav-close-button" id="nav-close-button" type="button" aria-label="Close navigation">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <button class="nav-link active" data-page="explore" type="button">Explore</button>
+          <button class="nav-link auth-only-nav hidden" data-page="for-you" type="button">For you</button>
+          <button class="nav-link" data-page="genres" type="button">Browse by genre</button>
+          <button class="nav-link" data-page="history" type="button">More like these</button>
+          <button class="nav-link" data-page="hybrid" type="button">Mix &amp; match</button>
+          <button class="nav-link auth-only-nav hidden" data-page="library" type="button">
+            <span>Library</span>
+            <span class="nav-badge hidden" id="nav-library-badge">0</span>
+          </button>
+          <button class="nav-link auth-only-nav hidden" data-page="profile" type="button">Profile</button>
+          <button class="nav-link nav-drawer-auth hidden" id="nav-drawer-auth-button" type="button">
+            Sign in
+          </button>
+          <button class="nav-link nav-drawer-auth hidden" id="nav-drawer-logout-button" type="button">
+            Log out
+          </button>
         </nav>
-        <button class="button button-ghost" id="nav-auth-button" type="button">
-          Sign in
+
+        <div class="utility-actions">
+          <button class="nav-link nav-search-trigger" id="nav-search-button" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <span>Search</span>
+          </button>
+          <button class="nav-link" id="nav-auth-button" type="button">
+            Sign in
+          </button>
+          <button class="nav-link hidden" id="nav-logout-button" type="button">
+            Log out
+          </button>
+        </div>
+        <button class="mobile-search-toggle" id="mobile-search-toggle" type="button" aria-label="Search movies">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
         </button>
-        <button class="button button-primary hidden" id="nav-logout-button" type="button">
-          Log out
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
         </button>
       </div>
-    </header>`
+    </header>
 
-    <main class="content-shell">
-      <section class="view auth-view" id="auth-view">
+    <div class="nav-overlay" id="nav-overlay"></div>
+<div class="region-bar"><label for="watch-country">Watch region</label><select id="watch-country"><option value="IN">India</option></select><span>Provider availability varies by region.</span><div id="country-status" role="status"></div></div>
+
+    <main class="content-shell" id="main-content"><div id="genre-startup-status" role="status"></div>
+      <!-- AUTH MODAL / VIEW (When guest clicks Sign In) -->
+      <section class="view auth-view hidden" id="auth-view">
         <div class="hero-card panel reveal">
-          <div class="eyebrow">Personalized discovery, without the noise</div>
-          <h1>Build a movie shelf that gets smarter every time you watch.</h1>
+
+          <h1>Build a movie shelf that gets <span class="hl">smarter</span> every time you watch.</h1>
           <p class="hero-copy">
             CineMatch blends genre taste, watched titles, and catalog quality signals into
             recommendations that feel curated instead of random.
@@ -80,9 +137,10 @@
           </div>
 
           <div class="feature-strip">
-            <div class="feature-chip">Save a personal library</div>
-            <div class="feature-chip">Rate films and write notes</div>
-            <div class="feature-chip">Switch between genre, history, and hybrid recs</div>
+            <div class="feature-chip">Trailers &amp; Full Cast Credits</div>
+            <div class="feature-chip">Personal Watchlist &amp; Watched Library</div>
+            <div class="feature-chip">Curated Shareable Lists</div>
+            <div class="feature-chip">CSV &amp; JSON Export</div>
           </div>
         </div>
 
@@ -170,105 +228,206 @@
         </div>
       </section>
 
-      <section class="view app-view hidden" id="app-view">
-        <div class="dashboard-grid">
-          <aside class="panel profile-panel reveal">
-            <div class="eyebrow">Your profile</div>
-            <div class="profile-avatar" id="profile-avatar">?</div>
-            <h2 id="profile-username">Welcome back</h2>
-            <p class="muted-copy" id="profile-summary">
-              Your personal dashboard is loading.
-            </p>
+      <!-- MAIN APP VIEW (Both Public Pages and Authenticated Dashboard) -->
+      <section class="view app-view" id="app-view">
+        <div class="dashboard-main full-width-when-guest" id="dashboard-main">
 
-            <div class="profile-facts">
-              <article>
-                <span>Library size</span>
-                <strong id="profile-library-count">0</strong>
-              </article>
-              <article>
-                <span>Genres selected</span>
-                <strong id="profile-genre-count">0</strong>
-              </article>
-            </div>
+          <!-- 0. PROFILE PAGE -->
+          <section id="sec-profile" class="panel feature-panel dashboard-page reveal" data-page-name="profile">
+            <div id="profile-status" role="status"></div><div class="profile-page-container">
 
-            <div class="field">
-              <span>Preferred genres</span>
-              <div class="chip-grid compact" id="profile-genre-grid"></div>
-              <div class="inline-actions">
-                <button class="button button-secondary" id="save-genre-preferences" type="button">
-                  Save genre preferences
-                </button>
+              <div class="profile-avatar" id="profile-avatar">?</div>
+              <h2 id="profile-username">Welcome</h2>
+              <p class="muted-copy" id="profile-summary">
+                Your personal dashboard is active.
+              </p>
+
+              <div class="profile-facts">
+                <article>
+                  <span>Watched</span>
+                  <strong id="profile-library-count">0</strong>
+                </article>
+                <article>
+                  <span>Watchlist</span>
+                  <strong id="profile-watchlist-count">0</strong>
+                </article>
+                <article>
+                  <span>Genres</span>
+                  <strong id="profile-genre-count">0</strong>
+                </article>
               </div>
-            </div>
 
-            <form class="form-stack thin" id="password-form">
-              <div class="section-heading small">
-                <div>
-                  <h3>Change password</h3>
-                  <p>Keep your account secure without leaving the page.</p>
+              <div class="field">
+                <span>Preferred genres</span>
+                <div class="chip-grid compact" id="profile-genre-grid"></div>
+                <div class="inline-actions">
+                  <button class="button button-secondary" id="save-genre-preferences" type="button">
+                    Save preferences
+                  </button>
                 </div>
               </div>
 
-              <input id="password-form-username" name="username" autocomplete="username" type="hidden" />
-              <label class="field">
-                <span>Current password</span>
-                <input id="current-password" name="currentPassword" type="password" autocomplete="current-password" />
-              </label>
-              <label class="field">
-                <span>New password</span>
-                <input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="6" />
-              </label>
-              <button class="button button-ghost" type="submit">Update password</button>
-            </form>
-          </aside>
+              <form class="form-stack thin" id="password-form">
+                <div class="section-heading small">
+                  <div>
+                    <h3>Change password</h3>
+                    <p>Keep your account secure.</p>
+                  </div>
+                </div>
 
-          <div class="dashboard-main">
-            <section id="sec-shortlist" class="panel feature-panel reveal">
+                <input id="password-form-username" name="username" autocomplete="username" type="hidden" />
+                <label class="field">
+                  <span>Current password</span>
+                  <input id="current-password" name="currentPassword" type="password" autocomplete="current-password" />
+                </label>
+                <label class="field">
+                  <span>New password</span>
+                  <input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="6" required />
+                </label>
+                <button class="button button-ghost" type="submit">Update password</button><button class="button button-danger" type="button" id="revoke-sessions">Sign out on all devices</button>
+              </form>
+            </div>
+          </section>
+
+          <!-- 1. EXPLORE / DISCOVER PAGE (Public & Logged-In) -->
+            <section id="sec-explore" class="panel feature-panel dashboard-page active reveal" data-page-name="explore">
+              <div class="explore-hero"><h1>Your next great <span>film starts here.</span></h1><p>Follow a favourite. Explore a new genre. Find where to watch.</p></div>
+              <div class="feature-heading"><h2>In the spotlight</h2><button class="button button-ghost" id="spotlight-search" type="button">Find a movie ↗</button></div>
+              <div id="featured-movie"></div>
+              <p id="catalog-freshness" class="snapshot-note">Catalogue snapshot • stored TMDB popularity.</p>
+              <!-- Trending Now Section -->
+              <div class="catalog-section" id="explore-trending-section">
+                <div class="section-heading">
+                  <div>
+
+                    <h2>Popular in the catalogue</h2>
+                    <p>Discover films using the catalogue’s stored popularity scores.</p>
+                  </div>
+                </div>
+                <div class="movie-grid" id="explore-trending-grid"></div>
+              </div>
+
+              <!-- Top Rated Section -->
+              <div class="catalog-section" id="explore-top-rated-section">
+                <div class="section-heading">
+                  <div>
+
+                    <h2>Community favourites</h2>
+                    <p>Highly rated by the TMDB community.</p>
+                  </div>
+                </div>
+                <div class="movie-grid" id="explore-top-rated-grid"></div>
+              </div>
+
+              <!-- Filtered Decade / Catalog Section -->
+              <div class="catalog-section" id="explore-decade-section">
+                <div class="section-heading">
+                  <div>
+
+                    <h2 id="explore-decade-title">The complete catalogue</h2>
+                    <p id="explore-decade-desc">A starting point for revisiting a particular moment in film.</p>
+                  </div>
+                </div>
+
+                <!-- Filter & Sorting Toolbar -->
+                <div class="filter-toolbar">
+                  <div class="filter-group">
+                    <span class="filter-label">Decade:</span>
+                    <div class="filter-pill-group" id="explore-decade-filters">
+                      <button class="filter-pill active" data-decade="all" type="button">All Time</button>
+                      <button class="filter-pill" data-decade="2020s" type="button">2020s</button>
+                      <button class="filter-pill" data-decade="2010s" type="button">2010s</button>
+                      <button class="filter-pill" data-decade="2000s" type="button">2000s</button>
+                      <button class="filter-pill" data-decade="1990s" type="button">1990s</button>
+                      <button class="filter-pill" data-decade="1980s" type="button">1980s</button>
+                      <button class="filter-pill" data-decade="1970s" type="button">1970s</button>
+<button class="filter-pill" data-decade="before1970" type="button">Before 1970</button>
+                    </div>
+                  </div>
+
+                  <div class="filter-controls-inline"><label class="filter-select-label"><span>Genre</span><select id="archive-genre"><option value="">Every genre</option></select></label>
+                    <label class="filter-select-label">
+                      <span>Minimum community rating</span>
+                      <select id="explore-min-rating">
+                        <option value="0">Any rating</option>
+                        <option value="6.5">6.5+ Stars</option>
+                        <option value="7.5">7.5+ Stars</option>
+                        <option value="8.0">8.0+ Masterpieces</option>
+                      </select>
+                    </label>
+                    <label class="filter-select-label">
+                      <span>Sort By:</span>
+                      <select id="explore-sort-by">
+                        <option value="popularity">Most Popular</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="year_desc">Newest First</option>
+                        <option value="year_asc">Oldest First</option>
+                        <option value="title">Title (A-Z)</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <div class="movie-grid" id="explore-decade-grid"></div><div class="pagination" id="archive-pagination" aria-label="Catalogue pages"></div>
+              </div>
+            </section>
+
+            <!-- 2. PERSONALIZED SHORTLIST (FOR YOU) -->
+            <section id="sec-shortlist" class="panel feature-panel dashboard-page reveal" data-page-name="for-you">
               <div class="section-heading">
                 <div>
-                  <div class="eyebrow">Tonight's shortlist</div>
-                  <h2>Recommendations for you</h2>
+
+                  <h2>Recommended for you</h2>
                   <p id="personal-reason">We are calculating your best next watch.</p>
                 </div>
-                <button class="button button-secondary" id="refresh-personalized" type="button">
-                  Refresh picks
-                </button>
+                <div class="inline-actions">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="exclude-watched-toggle" checked />
+                    <span>Hide watched</span>
+                  </label>
+                  <button class="button button-secondary" id="refresh-personalized" type="button">
+                    Refresh picks
+                  </button>
+                </div>
               </div>
               <div class="movie-grid" id="personalized-grid"></div>
             </section>
 
-            <section id="sec-genre-lab" class="panel workspace-panel reveal">
+            <!-- 3. BROWSE BY GENRE -->
+            <section id="sec-genre-lab" class="panel workspace-panel dashboard-page reveal" data-page-name="genres">
               <div class="section-heading">
                 <div>
-                  <div class="eyebrow">Genre lab</div>
-                  <h2>Refine your taste profile</h2>
-                  <p>Preview what your current preferences bias toward before you save them.</p>
+
+                  <h2>Explore your taste profile</h2>
+                  <p>Select genres to see recommendations matching your choices.</p>
+                  <div class="chip-grid compact" id="browse-genre-grid"></div>
                 </div>
                 <div class="inline-actions">
-                  <select id="genre-top-n">
+                  <label class="filter-select-label"><span>Number of results</span><select id="genre-top-n">
                     <option value="8">8 picks</option>
                     <option value="12" selected>12 picks</option>
-                    <option value="16">16 picks</option>
+                    <option value="18">18 picks</option>
+                    <option value="24">24 picks</option>
                   </select>
-                  <select id="genre-min-rating">
+                  </label><label class="filter-select-label"><span>Minimum community rating</span><select id="genre-min-rating">
                     <option value="6">Rating 6+</option>
                     <option value="7" selected>Rating 7+</option>
                     <option value="8">Rating 8+</option>
                   </select>
-                  <button class="button button-primary" id="run-genre-recommend" type="button">
-                    Preview genre recs
+                  </label><button class="button button-primary" id="run-genre-recommend" type="button">
+                    Preview picks
                   </button>
                 </div>
               </div>
               <div class="movie-grid" id="genre-grid-results"></div>
             </section>
 
-            <section id="sec-history-lab" class="panel workspace-panel reveal">
+            <!-- 4. MORE LIKE THESE (HISTORY SEEDS) -->
+            <section id="sec-history-lab" class="panel workspace-panel dashboard-page reveal" data-page-name="history">
               <div class="section-heading">
                 <div>
-                  <div class="eyebrow">History lab</div>
-                  <h2>Seed a recommendation trail</h2>
-                  <p>Pick a few titles and see what their shared DNA suggests next.</p>
+
+                  <h2>Find movies with similar DNA</h2>
+                  <p>Pick a few titles and see what their shared themes suggest next.</p>
                 </div>
                 <button class="button button-secondary" id="clear-history-seeds" type="button">
                   Clear seeds
@@ -277,7 +436,7 @@
 
               <div class="search-block">
                 <label class="field">
-                  <span>Search titles to use as history seeds</span>
+                  <span>Search titles to use as seeds</span>
                   <input id="history-search-input" autocomplete="off" placeholder="Start typing a movie title" />
                 </label>
                 <div class="search-results hidden" id="history-search-results"></div>
@@ -286,90 +445,345 @@
 
               <div class="inline-actions spaced">
                 <button class="button button-primary" id="run-history-recommend" type="button">
-                  Recommend from history
+                  Find similar movies
                 </button>
               </div>
 
               <div class="movie-grid" id="history-grid-results"></div>
             </section>
 
-            <section id="sec-hybrid-blend" class="panel workspace-panel reveal">
+            <!-- 5. MIX & MATCH (HYBRID BLEND) -->
+            <section id="sec-hybrid-blend" class="panel workspace-panel dashboard-page reveal" data-page-name="hybrid">
               <div class="section-heading">
                 <div>
-                  <div class="eyebrow">Hybrid blend</div>
-                  <h2>Mix genres with watched titles</h2>
-                  <p>Control how much your explicit taste and saved history influence the result.</p>
+
+                  <h2>Mix your own double bill</h2>
+                  <p>Choose the films and genres that shape your recommendations.</p>
                 </div>
                 <button class="button button-secondary" id="run-hybrid-recommend" type="button">
-                  Run hybrid recs
+                  Run blend
                 </button>
               </div>
 
-              <div class="weight-grid">
-                <label class="slider-field">
-                  <span>History weight</span>
-                  <input id="weight-content" type="range" min="0" max="1" step="0.1" value="0.7" />
-                  <strong id="weight-content-value">0.7</strong>
-                </label>
-                <label class="slider-field">
-                  <span>Genre weight</span>
-                  <input id="weight-genre" type="range" min="0" max="1" step="0.1" value="0.3" />
-                  <strong id="weight-genre-value">0.3</strong>
-                </label>
+              <div class="hybrid-inputs">
+                <label class="field"><span>Movie source</span><select id="hybrid-source"><option value="saved">Recent saved history</option><option value="manual">Choose movies manually</option></select></label>
+                <div id="hybrid-manual-inputs"><label class="field"><span>Search films for this blend</span><input id="hybrid-search-input" autocomplete="off" placeholder="Add a film you like" /></label><div class="search-results hidden" id="hybrid-search-results"></div></div>
+                <div class="seed-row" id="hybrid-seeds"></div>
+                <p class="helper-text">Saved history uses your recent profile sample. Every film used is shown above.</p>
+                <div class="field"><span>Genres for this blend</span><div class="chip-grid" id="hybrid-genre-grid"></div></div>
               </div>
-
+              <div class="weight-grid"><label class="slider-field" for="weight-content"><span>Balance movies and genres</span><input id="weight-content" type="range" min="0" max="1" step="0.1" value="0.7" /></label><div class="weight-labels"><strong id="weight-content-value">70% movies</strong><strong id="weight-genre-value">30% genres</strong></div></div>
+              <p class="helper-text" id="hybrid-summary" aria-live="polite"></p>
               <div class="movie-grid" id="hybrid-grid-results"></div>
             </section>
 
-            <section id="sec-library" class="panel workspace-panel reveal">
-              <div class="section-heading">
+            <!-- 6. LIBRARY & WATCHLIST & CUSTOM LISTS -->
+            <section id="sec-library" class="panel workspace-panel dashboard-page reveal" data-page-name="library">
+              <div class="library-header-row">
                 <div>
-                  <div class="eyebrow">Your library</div>
-                  <h2>Saved films, notes, and ratings</h2>
-                  <p>Search the catalog, add films, then keep track of what you thought.</p>
+
+                  <h2>Library, Watchlist &amp; Lists</h2>
+                  <p>Manage your watched history, queued films, and shareable curated lists.</p>
                 </div>
-                <div class="library-badge" id="library-badge">0 saved</div>
+                <div class="export-actions">
+                  <span class="export-label">Export Data:</span>
+                  <button class="button button-ghost export-btn" id="export-csv-btn" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    CSV
+                  </button>
+                  <button class="button button-ghost export-btn" id="export-json-btn" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    JSON
+                  </button>
+                </div>
               </div>
 
-              <div class="search-block">
-                <label class="field">
-                  <span>Add a movie to your library</span>
-                  <input id="library-search-input" autocomplete="off" placeholder="Search by title" />
-                </label>
-                <div class="search-results hidden" id="library-search-results"></div>
+              <!-- Library Subtabs -->
+              <div class="library-tabs">
+                <button class="lib-tab active" data-lib-tab="watched" type="button">
+                  <span>Watched Shelf</span>
+                  <span class="lib-tab-count" id="lib-watched-count">0</span>
+                </button>
+                <button class="lib-tab" data-lib-tab="watchlist" type="button">
+                  <span>Watchlist Queue</span>
+                  <span class="lib-tab-count" id="lib-watchlist-count">0</span>
+                </button>
+                <button class="lib-tab" data-lib-tab="custom-lists" type="button">
+                  <span>Curated Lists</span>
+                  <span class="lib-tab-count" id="lib-lists-count">0</span>
+                </button>
               </div>
 
-              <div class="library-list" id="library-list"></div>
+              <!-- Subtab 1: Watched Shelf -->
+              <div class="lib-panel active" id="lib-panel-watched">
+                <div class="search-block">
+                  <label class="field">
+                    <span>Quick add a watched movie</span>
+                    <input id="library-search-input" autocomplete="off" placeholder="Search title to add to watched library..." />
+                  </label>
+                  <div class="search-results hidden" id="library-search-results"></div>
+                </div>
+                <div class="library-list" id="library-list"></div><div class="pagination" id="watched-pagination" aria-label="Watched pages"></div>
+              </div>
+
+              <!-- Subtab 2: Watchlist Queue -->
+              <div class="lib-panel" id="lib-panel-watchlist">
+                <div class="watchlist-prompt">
+                  <p>Films you want to watch next. Click "Mark as Watched" when you finish viewing!</p>
+                </div>
+                <div class="watchlist-grid" id="watchlist-grid"></div><div class="pagination" id="watchlist-pagination" aria-label="Watchlist pages"></div>
+              </div>
+
+              <!-- Subtab 3: Curated Shareable Lists -->
+              <div class="lib-panel" id="lib-panel-custom-lists">
+                <div class="custom-lists-top">
+                  <button class="button button-primary" id="open-create-list-modal" type="button">
+                    Create a curated list
+                  </button>
+                </div>
+                <div class="custom-lists-container" id="custom-lists-container"></div><div class="pagination" id="lists-pagination" aria-label="List pages"></div>
+              </div>
             </section>
+
+            <section class="dashboard-page" data-page-name="owner-list"><div class="section-heading"><h1 id="owner-list-title">Your curated list</h1><button class="button button-secondary" id="owner-list-back" type="button">Back to library</button></div><form id="owner-list-form" class="list-editor form-stack"><label class="field"><span>List title</span><input name="title" required maxlength="100" /></label><label class="field"><span>Description</span><textarea name="description" maxlength="500" rows="3"></textarea></label><label class="checkbox-label"><input type="checkbox" name="is_public" /><span>Allow anyone with the link to view this list</span></label><div class="inline-actions"><button class="button button-primary" type="submit">Save list</button><button class="button button-secondary" id="owner-list-share" type="button" hidden>Copy public link</button></div><p id="owner-list-error" role="alert" class="form-error"></p></form><div class="movie-grid" id="owner-list-grid"></div><div class="pagination" id="owner-pagination" aria-label="Your list pages"></div></section>
+            <!-- 7. PUBLIC SHARED LIST VIEW PAGE -->
+            <section id="sec-shared-list" class="panel workspace-panel dashboard-page reveal" data-page-name="shared-list">
+              <div class="shared-list-header">
+
+                <h1 id="shared-list-title">Curated List</h1>
+                <p id="shared-list-creator" class="creator-badge">Curated by CineMatch member</p>
+                <p id="shared-list-description" class="shared-list-desc"></p>
+                <div class="shared-list-actions">
+                  <button class="button button-secondary" id="copy-shared-list-link" type="button">
+                    Copy public link
+                  </button>
+                  <button class="button button-primary" id="back-to-explore-btn" type="button">
+                    Explore More Movies
+                  </button>
+                </div>
+              </div>
+              <div class="movie-grid" id="shared-list-grid"></div><div class="pagination" id="shared-pagination" aria-label="Shared list pages"></div>
+            </section>
+
           </div>
-        </div>
       </section>
     </main>
+    <footer class="site-footer">
+      <strong class="footer-brand">Cine<span class="hl">Match</span></strong>
+      <div class="footer-copy">
+        <p>Movie data from <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDB</a>. Watch availability from <a href="https://www.justwatch.com/" target="_blank" rel="noopener noreferrer">JustWatch</a> via TMDB.</p>
+        <p>Check current prices and availability on the provider page.</p>
+      </div>
+    </footer>
   </div>
 
+  <!-- CREATE CUSTOM LIST MODAL -->
+  <div class="modal-shell hidden" id="create-list-modal-shell" role="dialog" aria-modal="true" aria-label="Create new list">
+    <div class="modal-card small-modal-card">
+      <button class="modal-close" id="create-list-modal-close" type="button" aria-label="Close modal">
+        &#x2715;
+      </button>
+      <div class="modal-header">
+
+        <h2>Create Curated List</h2>
+        <p>Give your list a title and share it with friends via unique link.</p>
+      </div>
+      <form class="form-stack" id="create-list-form"><p class="form-error" id="create-list-error" role="alert"></p>
+        <label class="field">
+          <span>List Title</span>
+          <input id="create-list-title" maxlength="100" placeholder="e.g. Mind-Bending Sci-Fi, Cozy Rain Favorites" required />
+        </label>
+        <label class="field">
+          <span>Description (Optional)</span>
+          <textarea id="create-list-description" maxlength="500" rows="3" placeholder="What makes these movies special?"></textarea>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="create-list-is-public" checked />
+          <span>Make list publicly shareable via URL</span>
+        </label>
+        <button class="button button-primary" type="submit">
+          Create List
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD TO LIST MODAL (Pick which custom list to add a movie to) -->
+  <div class="modal-shell hidden" id="add-to-list-modal-shell" role="dialog" aria-modal="true" aria-label="Add movie to list">
+    <div class="modal-card small-modal-card">
+      <button class="modal-close" id="add-to-list-modal-close" type="button" aria-label="Close modal">
+        &#x2715;
+      </button>
+      <div class="modal-header">
+
+        <h2>Add to Curated List</h2>
+        <p id="add-to-list-movie-title">Select which list to add this title to.</p>
+      </div>
+      <div class="pick-list-container" id="pick-list-container"></div><div class="pagination" id="pick-list-pagination"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION STACK -->
   <div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
 
-  <div class="modal-shell hidden" id="movie-modal-shell">
-    <div class="modal-card">
+  <!-- SEARCH OVERLAY MODAL -->
+  <div class="modal-shell search-modal-shell hidden" id="search-modal-shell" role="dialog" aria-modal="true" aria-label="Search movies and themes">
+    <div class="modal-card search-modal-card">
+      <button class="modal-close" id="search-modal-close" type="button" aria-label="Close search">
+        &#x2715;
+      </button>
+      <div class="search-modal-header">
+
+        <h2>Search Titles &amp; Themes</h2>
+        <p id="search-section-subtitle">
+          Type a film title, plot concept (e.g. <em>"time travel heist"</em>, <em>"cyberpunk noir"</em>), or genre mood.
+        </p>
+      </div>
+
+      <div class="search-hero-box">
+        <form class="search-input-form" id="main-search-form"><label class="search-field-label" for="main-search-input">Movie title or theme</label>
+          <div class="search-input-wrapper">
+            <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="text"
+              id="main-search-input" aria-label="Search movie titles and themes"
+              class="main-search-input"
+              placeholder="Search any title or theme (e.g. Oppenheimer, mind-bending sci-fi, dark comedy)..."
+              autocomplete="off"
+            />
+            <button class="search-clear-btn hidden" id="main-search-clear" type="button" aria-label="Clear search">
+              ✕
+            </button>
+            <button class="button button-primary search-submit-btn" id="main-search-submit" type="submit">
+              Search
+            </button>
+          </div>
+        </form>
+
+        <div class="search-quick-tags">
+          <span class="quick-tags-label">Explore themes:</span>
+          <button type="button" class="quick-tag" data-search-term="Cyberpunk sci-fi">Cyberpunk</button>
+          <button type="button" class="quick-tag" data-search-term="Time travel thriller">Time Travel</button>
+          <button type="button" class="quick-tag" data-search-term="Space exploration">Space</button>
+          <button type="button" class="quick-tag" data-search-term="Psychological mind-bending">Mind-Bending</button>
+          <button type="button" class="quick-tag" data-search-term="Film noir crime mystery">Noir Mystery</button>
+          <button type="button" class="quick-tag" data-search-term="Medieval fantasy kingdom">Dark Fantasy</button>
+        </div>
+      </div>
+
+      <div class="search-feedback-banner hidden" id="search-feedback-banner"></div>
+      <div class="movie-grid search-modal-grid" id="main-search-grid-results"></div>
+    </div>
+  </div>
+
+  <!-- EXPANDED MOVIE DETAILS MODAL WITH YOUTUBE TRAILER & CAST CREDITS -->
+  <div class="modal-shell hidden" id="movie-modal-shell" role="dialog" aria-modal="true" aria-label="Movie details">
+    <div class="modal-card rich-movie-modal-card">
       <button class="modal-close" id="movie-modal-close" type="button" aria-label="Close movie details">
         &#x2715;
       </button>
-      <div class="modal-layout">
-        <div class="modal-poster" id="movie-modal-poster"></div>
-        <div class="modal-content">
-          <div class="eyebrow">Movie details</div>
-          <h2 id="movie-modal-title">Title</h2>
-          <p class="modal-meta" id="movie-modal-meta"></p>
-          <p class="modal-overview" id="movie-modal-overview"></p>
-          <div class="chip-row" id="movie-modal-genres"></div>
-          <div class="inline-actions">
-            <button class="button button-primary" id="movie-modal-save" type="button">
-              Save to library
-            </button>
+
+      <!-- Backdrop with Trailer toggle -->
+      <div class="modal-media-stage" id="movie-modal-media-stage">
+        <div class="trailer-container hidden" id="movie-modal-trailer-wrapper">
+          <iframe
+            id="movie-modal-trailer-frame"
+            src=""
+            title="Movie Trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="backdrop-wrapper" id="movie-modal-backdrop-wrapper">
+          <div class="backdrop-overlay"></div>
+          <img id="movie-modal-backdrop-img" src="" alt="Backdrop" />
+          <button class="play-trailer-btn hidden" id="movie-modal-play-trailer-btn" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Watch Trailer</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-rich-body"><div id="movie-detail-status" role="status"></div>
+        <div class="modal-header-flex">
+          <div class="modal-poster-column" id="movie-modal-poster"></div>
+          <div class="modal-title-column">
+            <div class="modal-badges-row">
+              <span class="modal-rating-badge" id="movie-modal-rating-badge">★ 0.0</span>
+              <span class="modal-year-badge" id="movie-modal-year">2024</span>
+              <span class="modal-runtime-badge" id="movie-modal-runtime">120m</span>
+            </div>
+            <h2 id="movie-modal-title">Movie Title</h2>
+            <p class="modal-tagline" id="movie-modal-tagline"></p>
+            <div class="chip-row" id="movie-modal-genres"></div>
+
+            <div class="modal-director-block" id="movie-modal-director-block">
+              <span class="director-label">Director:</span>
+              <strong id="movie-modal-director-name">Director Name</strong>
+            </div>
+
+            <!-- Primary Action Buttons -->
+            <div class="modal-actions-row">
+              <button class="button button-primary" id="movie-modal-save" type="button">
+                + Add to Watched
+              </button>
+              <button class="button button-secondary" id="movie-modal-watchlist-btn" type="button">
+                Save to watchlist
+              </button>
+              <button class="button button-ghost" id="movie-modal-add-list-btn" type="button">
+                Add to list
+              </button>
+              <div class="modal-external-links" id="movie-modal-external-links"></div>
+            </div>
           </div>
+        </div>
+
+<div id="movie-watch-options"></div>
+        <!-- Plot Overview -->
+        <div class="modal-section">
+          <h3>Synopsis</h3>
+          <p class="modal-overview" id="movie-modal-overview"></p>
+        </div>
+
+        <!-- Financials & Extra Details -->
+        <div class="modal-facts-grid" id="movie-modal-facts-grid">
+          <article class="fact-box">
+            <span class="fact-label">Release Date</span>
+            <strong id="modal-fact-release-date">-</strong>
+          </article>
+          <article class="fact-box">
+            <span class="fact-label">Budget</span>
+            <strong id="modal-fact-budget">-</strong>
+          </article>
+          <article class="fact-box">
+            <span class="fact-label">Box Office</span>
+            <strong id="modal-fact-revenue">-</strong>
+          </article>
+          <article class="fact-box">
+            <span class="fact-label">TMDB Votes</span>
+            <strong id="modal-fact-votes">-</strong>
+          </article>
+        </div>
+
+        <!-- Cast List With Photos -->
+        <div class="modal-section" id="movie-modal-cast-section">
+          <h3>Top Cast</h3>
+          <div class="cast-grid" id="movie-modal-cast-grid"></div>
+        </div>
+
+        <!-- Similar Movies ("You Might Also Like") -->
+        <div class="modal-section" id="movie-modal-similar-section">
+          <h3>You Might Also Like</h3>
+          <div class="movie-grid similar-grid" id="movie-modal-similar-grid"></div>
         </div>
       </div>
     </div>
   </div>
+<nav class="mobile-primary-nav" id="mobile-primary-nav" aria-label="Primary navigation"><button type="button" data-page="explore"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></svg><span>Explore</span></button><button type="button" data-page="library"><svg viewBox="0 0 24 24"><path d="M4 3h6v18H4zM14 3h6v18h-6zM4 7h6M14 7h6"/></svg><span>Library</span></button><button type="button" id="bottom-search"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg><span>Search</span></button><button type="button" id="bottom-more"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>More</span></button></nav>
+<div class="sr-only" id="suggestion-announcer" role="status" aria-live="polite"></div>
+<div class="modal-shell hidden" id="rating-modal-shell" role="dialog" aria-modal="false" aria-labelledby="rating-movie-title"><div class="modal-card small-modal-card"><button type="button" class="modal-close" id="rating-modal-close" aria-label="Close rating editor">×</button><h2 id="rating-movie-title">Your rating and notes</h2><form id="rating-form" class="form-stack"><label class="field"><span>Your rating (1–5, optional)</span><input id="edit-rating" type="number" min="1" max="5" step="0.5" /></label><button class="button button-ghost" type="button" id="clear-rating">Clear rating</button><label class="field"><span>Your notes (optional, up to 500 characters)</span><textarea id="edit-notes" rows="4" maxlength="500"></textarea></label><button class="button button-ghost" type="button" id="clear-notes">Clear notes</button><p id="rating-error" role="alert" class="form-error"></p><button type="submit" class="button button-primary">Save rating and notes</button></form></div></div>
 </body>
 </html>
